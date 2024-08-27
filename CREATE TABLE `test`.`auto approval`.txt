@@ -1,0 +1,11 @@
+CREATE TABLE `test`.`auto approval` (`First Name` VARCHAR(50) NOT NULL , `Last Name` VARCHAR(50) NOT NULL , `House` VARCHAR(50) NOT NULL , `Street Name` VARCHAR(100) NOT NULL , `Street Type` VARCHAR(50) NOT NULL , `City` VARCHAR(50) NOT NULL , `State` VARCHAR(50) NOT NULL , `Zip Code` VARCHAR(100) NOT NULL , `SSN` VARCHAR(100) NOT NULL , `FICO  Score` INT NOT NULL , `Tier` INT NOT NULL ) ENGINE = InnoDB;
+
+
+
+
+
+
+INSERT INTO `auto approval` (`First Name`, `Last Name`, `House`, `Street Name`, `Street Type`, `City`, `State`, `Zip Code`, `SSN`, `FICO  Score`, `Tier`) VALUES ('JORGE', 'NINO', '2843', 'HOLLOW COVE', 'CT', 'COLUMBUS', 'OH', '43231-1698', '666085488', '797', '1'), ('JAMES', 'DANGVU', '701', '18TH', 'ST', 'COVINGTON', 'KY', '41014-1411', '666765751', '810', '1'), ('ANANYA', 'SARKAR', '2998', 'COUNTY ROAD CC', 'ST', 'SLINGER', 'WI', '53086-9126', '666298778', '761', '1'), ('JANIE', 'GARCIA', '8094', 'PHILPOTT', 'RD', 'SOUTH BOSTON', 'VA', '24592-6648', '666629792', '765', '1'), ('LIZA', 'WILLIAMS', '1261', 'PAYNETON', 'RD', 'CHATHAM', 'VA', '24531-4593', '666825880', '760', '1'), ('MARIN', 'DOBYNS', '122', 'SWEET WILLIAM', 'CT', 'DANVILLE', 'VA', '24540-6112', '666824640', '766', '1');
+
+
+
