@@ -1,0 +1,173 @@
+import { FaSearch } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import "../Components/AutoApprovalCustomerDetails.css";
+const AutoApproval = () => {
+    const [states, setStates] = useState([]);
+    const [selectedState, setSelectedState] = useState('');
+    const [ficoScore, setFicoScore] = useState('');
+    const [tiers, setTiers] = useState([]);
+    const [selectedTier, setSelectedTier] = useState('');
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        fetch('http://localhost:8080/autoapproval')
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => console.error('Error fetching initial data:', error));
+    }, []);
+
+
+    useEffect(() => {
+        fetch('http://localhost:8080/getStates')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Fetched states:', data);
+                setStates(data);
+            })
+            .catch(error => console.error('Error fetching states:', error));
+    }, []);
+
+
+    useEffect(() => {
+        fetch('http://localhost:8080/getTier')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Fetched tiers:', data);
+                setTiers(data);
+            })
+            .catch(error => console.error('Error fetching tiers:', error));
+    }, []);
+
+
+
+    /*  const calculateTier = (score) => {
+          if (score >= 760) return '1';
+          if (score >= 720) return '2';
+          if (score >= 710) return '3';
+          return 'No Tier';
+      };
+      useEffect(() => {
+          if (ficoScore) {
+              setTier(calculateTier(Number(ficoScore)));
+          } else {
+              setTier('');
+          }
+      }, [ficoScore]);
+   
+   */
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const filtered = data.filter(item => {
+            const stateMatch = selectedState ? item.State === selectedState : true;
+            const tierMatch = selectedTier ? item.Tier === selectedTier : true;
+            const ficoMatch = ficoScore ? item["FICO  Score"] === Number(ficoScore) : true;
+            return stateMatch && ficoMatch && tierMatch;
+        });
+        setFilteredData(filtered);
+        setLoading(false);
+    };
+
+
+
+    return (
+        <div className="CustomerDetails">
+            <form
+                className="conditionsNav p-2 m-2 border-2 border-black rounded-md flex justify-center items-center gap-2 flex-wrap"
+                onSubmit={handleSearch}
+            >
+                <div>
+                    <label className="px-2" htmlFor="State">State:</label>
+                    <select
+                        className="border-2 border-black rounded p-2"
+                        name="State"
+                        id="State"
+                        value={selectedState}
+                        onChange={(e) => setSelectedState(e.target.value)}
+                    >
+                        <option value="">Select State</option>
+                        {states.map((state, index) => (
+                            <option key={index} value={state}>{state}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <label className="px-2" htmlFor="State">Tier:</label>
+                    <select
+                        className="border-2 border-black rounded p-2"
+                        name="Tier"
+                        id="Tier"
+                        type="number"
+                        value={selectedTier}
+                        onChange={(e) => setSelectedTier(e.target.value)}
+                    >
+                        <option value="">Select Tier</option>
+                        {tiers.map((tier, index) => (
+                            <option key={index} value={tier}>{tier}</option>
+                        ))}
+                    </select>
+
+
+                </div>
+
+
+                <div>
+                    <label className="px-2" htmlFor="fico-score">FICO  Score:</label>
+                    <input
+                        className="border-2 border-black rounded p-2"
+                        type="number"
+                        value={ficoScore}
+                        onChange={(e) => setFicoScore(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className="rounded px-4 py-3 border-2 border-black">
+                    <FaSearch />
+                </button>
+                {loading && <div>Loading...</div>}
+            </form>
+            <section className="min-h-screen py-8 px-4 m-2 border-2 border-black rounded-md">
+                <table className="w-full">
+                    <thead className="border-2 border-black">
+                        <tr>
+                            <th className="p-4 border-2 border-black">First Name</th>
+                            <th className="p-4 border-2 border-black">Last Name</th>
+                            <th className="p-4 border-2 border-black">House</th>
+                            <th className="p-4 border-2 border-black">Street Name</th>
+                            <th className="p-4 border-2 border-black">Street Type</th>
+                            <th className="p-4 border-2 border-black">City</th>
+                            <th className="p-4 border-2 border-black">State</th>
+                            <th className="p-4 border-2 border-black">Zip Code</th>
+                            <th className="p-4 border-2 border-black">SSN</th>
+                            <th className="p-4 border-2 border-black">FICO  Score</th>
+                            <th className="p-4 border-2 border-black">Tier</th>
+                        </tr>
+                    </thead>
+                    <tbody className="border-2 border-black">
+                        {filteredData.map((item, index) => (
+                            <tr key={index} className="text-center">
+                                <td className="p-2 border-2 border-black">{item["First Name"]}</td>
+                                <td className="p-2 border-2 border-black">{item["Last Name"]}</td>
+                                <td className="p-2 border-2 border-black">{item.House}</td>
+                                <td className="p-2 border-2 border-black">{item["Street Name"]}</td>
+                                <td className="p-2 border-2 border-black">{item["Street Type"]}</td>
+                                <td className="p-2 border-2 border-black">{item.City}</td>
+                                <td className="p-2 border-2 border-black">{item.State}</td>
+                                <td className="p-2 border-2 border-black">{item["Zip Code"]}</td>
+                                <td className="p-2 border-2 border-black">{item.SSN}</td>
+                                <td className="p-2 border-2 border-black">{item["FICO  Score"]}</td>
+                                <td className="p-2 border-2 border-black">{item.Tier}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    );
+};
+export default AutoApproval;
