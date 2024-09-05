@@ -12,6 +12,7 @@ const AutoApproval = () => {
         selectedTier: '',
     });
     const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -20,36 +21,50 @@ const AutoApproval = () => {
                     axios.get('http://localhost:8080/api/getApprovalStates'),
                     axios.get('http://localhost:8080/api/getApprovalTier')
                 ]);
-                setStateData({
-                    ...stateData,
+                setStateData(prevState =>
+                    ({
+                    ...prevState,
                     states: statesResponse.data,
                     tiers: tiersResponse.data,
                     data: allData.data,
                     filteredData: allData.data
-                });
+                }));
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
         fetchData();
     }, []);
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const response = await axios.get('http://localhost:8080/api/autoapproval', {
-                params: {
-                    state: stateData.selectedState,
-                    tier: stateData.selectedTier,
-                    ficoScore: stateData.ficoScore,
-                }
-            });
-            setStateData(prevState => ({ ...prevState, filteredData: response.data }));
-        } catch (error) {
-            console.error('Error fetching filtered data:', error);
-        }
-        setLoading(false);
-     };
+
+
+
+
+   const handleSearch = async (e) => {
+   e.preventDefault();
+   setLoading(true);
+   try {
+       const response = await axios.post('http://localhost:8080/api/autoapproval', {
+           State: stateData.selectedState,
+           FicoScore: stateData.ficoScore,
+           Tier: stateData.selectedTier,
+       });
+       setStateData(prevState => ({ ...prevState, filteredData: response.data }));
+   } catch (error) {
+       console.error('Error fetching filtered data:', error);
+   }
+   setLoading(false);
+};
+
+
+
+
+
+
+
+
+
+
+
     const handleReset = () => {
         setStateData(prevState => ({
             ...prevState,
@@ -114,18 +129,22 @@ const AutoApproval = () => {
                 {loading && <div>Loading...</div>}
             </form>
             <section className="min-h-screen py-8 px-4 m-2 border border-black rounded-md">
-                {stateData.filteredData.length === 0 && !loading && (
-                    <div className="flex justify-center items-center min-h-full">No data available</div>
-                )}
-                {stateData.filteredData.length > 0 && (
+               
+                
                     <table className="w-full">
                         <thead className="border border-black">
                             <tr>
+                            <th className="p-4 border border-black text-blue-700">Last Name</th>
                                 <th className="p-4 border border-black text-blue-700">First Name</th>
-                                <th className="p-4 border border-black text-blue-700">Last Name</th>
+                                <th className="p-4 border border-black text-blue-700">Middle Name</th>
+                                <th className="p-4 border border-black text-blue-700">Prefix</th>
+                                <th className="p-4 border border-black text-blue-700">Suffix</th>
                                 <th className="p-4 border border-black text-blue-700">House</th>
+                                <th className="p-4 border border-black text-blue-700">Direction</th>
                                 <th className="p-4 border border-black text-blue-700">Street Name</th>
+                                <th className="p-4 border border-black text-blue-700">Post Dir</th>
                                 <th className="p-4 border border-black text-blue-700">Street Type</th>
+                                <th className="p-4 border border-black text-blue-700">Apt</th>
                                 <th className="p-4 border border-black text-blue-700">City</th>
                                 <th className="p-4 border border-black text-blue-700">State</th>
                                 <th className="p-4 border border-black text-blue-700">Zip Code</th>
@@ -135,24 +154,34 @@ const AutoApproval = () => {
                             </tr>
                         </thead>
                         <tbody className="border border-black">
-                            {stateData.filteredData.map((item, index) => (
+                        {stateData.filteredData.length === 0 && !loading ? (
+                            <tr>
+                            <td colSpan={5} className="p-4 text-center w-full">No data available</td></tr>
+                ):(
+                            stateData.filteredData.map((item, index) => (
                                 <tr key={index} className="text-center">
-                                    <td className="p-2 border border-black">{item["First Name"]}</td>
-                                    <td className="p-2 border border-black">{item["Last Name"]}</td>
+                                <td className="p-2 border border-black">{item.Last_Name}</td>
+                                    <td className="p-2 border border-black">{item.First_Name}</td>
+                                    <td className="p-2 border border-black">{item.Middle_Name}</td>
+                                    <td className="p-2 border border-black">{item.Prefix}</td>
+                                    <td className="p-2 border border-black">{item.Suffix}</td>
                                     <td className="p-2 border border-black">{item.House}</td>
-                                    <td className="p-2 border border-black">{item["Street Name"]}</td>
-                                    <td className="p-2 border border-black">{item["Street Type"]}</td>
+                                    <td className="p-2 border border-black">{item.Direction}</td>
+                                    <td className="p-2 border border-black">{item.Street_Name}</td>
+                                    <td className="p-2 border border-black">{item.Post_Dir}</td>
+                                    <td className="p-2 border border-black">{item.Street_Type}</td>
+                                    <td className="p-2 border border-black">{item.Apt}</td>
                                     <td className="p-2 border border-black">{item.City}</td>
                                     <td className="p-2 border border-black">{item.State}</td>
-                                    <td className="p-2 border border-black">{item["Zip Code"]}</td>
+                                    <td className="p-2 border border-black">{item.Zip_Code}</td>
                                     <td className="p-2 border border-black">{item.SSN}</td>
-                                    <td className="p-2 border border-black">{item["FICO Score"]}</td>
+                                    <td className="p-2 border border-black">{item.FICO_Score}</td>
                                     <td className="p-2 border border-black">{item.Tier}</td>
                                 </tr>
-                            ))}
+                            ))
+                )}
                         </tbody>
                     </table>
-                )}
             </section>
         </div>
     );
