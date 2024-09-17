@@ -1,0 +1,94 @@
+const express = require('express');
+const mysql = require('mysql');
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Test",
+})
+
+// FCL
+// Get Product
+app.get('/api/getProducts', (req, res) => {
+    const sql = 'SELECT DISTINCT `Product` FROM fcl';
+    db.query(sql, (err, results) => {
+        if (err) throw err;
+        res.json(results.map(row => row.Product));
+    });
+});
+
+// Get ScoreCard
+app.get('/api/getScoreCard', (req, res) => {
+    const sql = 'SELECT DISTINCT `Score_Card` FROM fcl';
+    db.query(sql, (err, results) => {
+        if (err) throw err;
+        res.json(results.map(row => row.Score_Card));
+    });
+});
+// Get salesProgram
+app.get('/api/getSalesProgram', (req, res) => {
+    const sql = 'SELECT DISTINCT `SalesProgram` FROM fcl';
+    db.query(sql, (err, results) => {
+        if (err) throw err;
+        res.json(results.map(row => row.SalesProgram));
+    });
+});
+
+
+// Get all data (initial page load)
+app.get('/api/fcl', (req, res) => {
+    const sql = 'SELECT * FROM fcl';
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json(results);
+    });
+});
+// Filter Data
+app.post('/api/fcl', (req, res) => {
+    const { Product, Score_Card, SalesProgram } = req.body;
+    let sql = 'SELECT * FROM fcl WHERE 1=1';
+    let queryParams = [];
+    if (Product) {
+        sql += ' AND `Product` = ?';
+        queryParams.push(Product);
+    }
+
+    if (Score_Card) {
+        sql += ' AND `Score_Card` = ?';
+        queryParams.push(Score_Card);
+    }
+    if (SalesProgram) {
+        sql += ' AND `SalesProgram` = ?';
+        queryParams.push(SalesProgram);
+    }
+   
+    db.query(sql, queryParams, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json(results);
+    });
+});
+
+
+
+// Sending response to the client
+app.get('/', (req, res) => {
+    return res.json("From Backend Side")
+});
+// Run on local machine
+app.listen(8080, () => {
+    console.log("listening on http://localhost:8080")
+});
