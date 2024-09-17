@@ -1,0 +1,26 @@
+CREATE TABLE `fcl` (
+  `Product` varchar(50) NOT NULL,
+  `Vehicle_Type` varchar(100) NOT NULL,
+  `Score_Card` varchar(100) NOT NULL,
+  `SalesProgram` varchar(50) NOT NULL,
+  `Term` varchar(50) NOT NULL,
+  `LTV_Calculated` varchar(100) NOT NULL,
+  `Modifier` int(50) NOT NULL,
+  `Formula` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+
+INSERT INTO `fcl` (`Product`, `Vehicle_Type`, `Score_Card`, `SalesProgram`, `Term`, `LTV_Calculated`, `Modifier`, `Formula`) VALUES
+('Retail', 'New', 'THN', 'Incentive & Special', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail & Balloon', 'Certified', 'DLQ', 'Standard', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 0, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail & Balloon', 'Certified', 'THN', 'Standard', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 0, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Lease', 'Certified', 'CLN', 'Standard', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 0, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail & Balloon', 'New', 'DLQ', 'Incentive & Special', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 0, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Lease', 'New', 'CLN', 'Incentive & Special', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 0, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail', 'New', 'THN', 'Incentive & Special', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail', 'Certified', 'DLQ', 'Standard', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail', 'Certified', 'THN', 'Standard', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail', 'Certified', 'CLN', 'Standard', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail', 'New', 'DLQ', 'Incentive & Special', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type'),
+('Retail', 'New', 'CLN', 'Incentive & Special', 'All Terms', 'LTV = Approved Amount/(MSRP + D&H)', 1, 'FCL = (Value based on LTV calculated and score card Table) * Modifier value based on sales program type');
