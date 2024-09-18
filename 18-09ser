@@ -13,7 +13,7 @@ const db = mysql.createConnection({
     database: "Test",
 })
 
-//fetch VIN details
+//fetch VIN details page
 app.get('/api/fetchVinDetails', (req, res) => {
     const query = "SELECT * FROM vindetails"
     db.query(query, (err, data) => {
@@ -56,7 +56,7 @@ app.post('/api/VinFilter', (req, res) => {
     });
 });
 
-//fetch dealer details
+//fetch dealer details page
 app.get('/api/fetchDealerDetails', (req, res) => {
     const query = "SELECT * FROM dealer"
     db.query(query, (err, data) => {
@@ -86,7 +86,7 @@ app.post('/api/DealerFilter', (req, res) => {
     });
 });
 
-//fetch origenate details
+//fetch origenate details page
 app.get('/api/fetchOrigenateDetails', (req, res) => {
     const query = "SELECT * FROM origenate"
     db.query(query, (err, data) => {
@@ -116,7 +116,7 @@ app.post('/api/OrigenateFilter', (req, res) => {
     });
 });
 
-// Get origenate ENV Types
+// Get origenate ENV Types page
 app.get('/api/getEnvTypes', (req, res) => {
     const sql = 'SELECT DISTINCT Env FROM origenate';
     db.query(sql, (err, results) => {
@@ -125,7 +125,7 @@ app.get('/api/getEnvTypes', (req, res) => {
     });
 });
 
-// AutoApproval
+// AutoApproval page
 // Get States
 app.get('/api/getApprovalStates', (req, res) => {
     const sql = 'SELECT DISTINCT State FROM autoapproval';
@@ -189,7 +189,7 @@ app.post('/api/autoApprovalFilter', (req, res) => {
 
 
 
-// CustomerProfile
+// CustomerProfile page
 // Get State
 app.get('/api/getStates', (req, res) => {
     const sql = 'SELECT DISTINCT `State` FROM customerprofile';
@@ -263,8 +263,7 @@ app.post('/api/customerprofile', (req, res) => {
 
 
 
-// FCL
-// Get Product
+// FCL page
 app.post('/search', (req, res) => {
     const { product, scoreCard, salesProgram, term, score } = req.body;
     if (product === 'Retail & Balloon' && scoreCard === 'THN' && salesProgram === 'Standard' && term === 'Regular') {
@@ -275,7 +274,7 @@ app.post('/search', (req, res) => {
           res.status(500).json('Error fetching data');
         } else if (results.length > 0) {
           const { ltv_less_equal_95, ltv_greater_95_less_equal_115, ltv_greater_115 } = results[0];
-          res.json(`LTV <= 95: ${ltv_less_equal_95}, LTV > 95 <= 115: ${ltv_greater_95_less_equal_115}, LTV > 115: ${ltv_greater_115}`);
+          res.json(` ${ltv_less_equal_95},  ${ltv_greater_95_less_equal_115},  ${ltv_greater_115}`);
         } else {
           res.json('No data available');
         }
@@ -283,12 +282,10 @@ app.post('/search', (req, res) => {
     } else {
       res.json('No data available');
     }
-   });
+ });
 
 
-
-
-//Residual
+//Residual page
 
 
 // Get Module
