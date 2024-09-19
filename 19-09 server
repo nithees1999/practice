@@ -1,0 +1,69 @@
+const express = require('express');
+const mysql = require('mysql');
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Test",
+})
+
+
+
+
+
+
+// FCL
+// Get Product
+app.post('/search', (req, res) => {
+    const { product, scoreCard, salesProgram, term, score, ltv } = req.body;
+    if (product === 'Retail & Balloon' && scoreCard === 'THN' && salesProgram === 'Standard' && term === 'Regular') {
+      const query = 'SELECT * FROM regular_term WHERE score_range_start <= ? AND score_range_end >= ?';
+      db.query(query, [score, score], (err, results) => {
+        if (err) {
+          console.error('Error querying the database:', err);
+          res.status(500).json('Error fetching data');
+        } else if (results.length > 0) {
+          const data = results[0];
+          const ltvValue = data[ltv]; // Dynamically access the LTV value
+          res.json(ltvValue !== undefined ? ltvValue : 'No data available');
+        } else {
+          res.json('No data available');
+        }
+      });
+    } else {
+      res.json('No data available');
+    }
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Sending response to the client
+app.get('/', (req, res) => {
+    return res.json("From Backend Side")
+});
+// Run on local machine
+app.listen(8080, () => {
+    console.log("listening on http://localhost:8080")
+});
