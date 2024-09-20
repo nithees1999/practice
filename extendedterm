@@ -1,0 +1,26 @@
+CREATE TABLE `extended_term` (
+  `id` int(11) NOT NULL,
+  `score_range_start` int(11) NOT NULL,
+  `score_range_end` int(11) NOT NULL,
+  `ltv_less_equal_95` decimal(10,4) DEFAULT NULL,
+  `ltv_greater_95_less_equal_115` decimal(10,4) DEFAULT NULL,
+  `ltv_greater_115` decimal(10,4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `extended_term`
+--
+
+INSERT INTO `extended_term` (`id`, `score_range_start`, `score_range_end`, `ltv_less_equal_95`, `ltv_greater_95_less_equal_115`, `ltv_greater_115`) VALUES
+(1, 70, 373, 7.3583, 11.8149, 17.0364),
+(2, 374, 389, 5.7408, 8.8579, 14.3390),
+(3, 390, 403, 4.3152, 6.8158, 11.7424),
+(4, 404, 413, 3.2987, 5.6293, 9.8167),
+(5, 414, 422, 2.5218, 4.6217, 8.1351),
+(6, 423, 432, 2.2240, 4.3627, 6.9942),
+(7, 433, 440, 1.9653, 4.1100, 6.7468),
+(8, 441, 448, 1.5035, 3.5043, 5.8693),
+(9, 449, 456, 1.2828, 2.9968, 5.1339),
+(10, 457, 463, 1.0951, 2.5241, 4.4640),
+(11, 464, 471, 0.9138, 2.1031, 3.7385),
+(12, 472, 479, 0.8968, 2.0188, 3.0349);
