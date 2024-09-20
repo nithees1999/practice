@@ -261,10 +261,19 @@ app.post('/api/customerprofile', (req, res) => {
 
 
 // FCL
-// Get Product
+// FCL search route
 app.post('/search', (req, res) => {
     const { product, scoreCard, salesProgram, term, score, ltv } = req.body;
     if (product === 'Retail & Balloon' && scoreCard === 'THN' && salesProgram === 'Standard' && term === 'Regular') {
+        let ltvColumn;
+        // Determine which LTV column to use based on the selected value
+        if (ltv <= 95) {
+            ltvColumn = 'ltv_less_equal_95';
+        } else if (ltv > 95 && ltv <= 115) {
+            ltvColumn = 'ltv_greater_95_less_equal_115';
+        } else if (ltv > 115) {
+            ltvColumn = 'ltv_greater_115';
+        }
         const query = 'SELECT * FROM regular_term WHERE score_range_start <= ? AND score_range_end >= ?';
         db.query(query, [score, score], (err, results) => {
             if (err) {
@@ -272,9 +281,7 @@ app.post('/search', (req, res) => {
                 res.status(500).json('Error fetching data');
             } else if (results.length > 0) {
                 const data = results[0];
-                console.log('Retrieved data:', data); // Debug output
-                console.log('LTV column name:', ltv); // Debug output
-                const ltvValue = data[ltv]; // Dynamically access the LTV value
+                const ltvValue = data[ltvColumn]; // Use the determined LTV column
                 res.json(ltvValue !== undefined ? ltvValue : 'No data available');
             } else {
                 res.json('No data available');
@@ -284,6 +291,7 @@ app.post('/search', (req, res) => {
         res.json('No data available');
     }
  });
+ 
 
 //Residual
 
