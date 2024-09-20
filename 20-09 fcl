@@ -2,159 +2,116 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 const FCLPage = () => {
-    const [product, setProduct] = useState('');
-    const [scoreCard, setScoreCard] = useState('');
-    const [salesProgram, setSalesProgram] = useState('');
-    const [term, setTerm] = useState('');
-    const [score, setScore] = useState('');
-    const [ltv, setLtv] = useState('');
-    const [ltvData, setLTVData] = useState(null);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [loading, setLoading] = useState(false);
-    const handleSearch = () => {
-        if (!product || !scoreCard || !salesProgram || !term || !score || !ltv) {
-            setErrorMessage('Please fill in all fields.');
-            return;
-        }
-        setLoading(true);
-        const searchParams = { product, scoreCard, salesProgram, term, score, ltv };
-        axios.post('http://localhost:8080/search', searchParams)
-            .then((response) => {
-                if (response.data === 'No data available') {
-                    setErrorMessage('No data available');
-                    setLTVData(null);
-                } else {
-                    setLTVData(response.data);
-                    setErrorMessage('');
-                }
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-                setErrorMessage('An error occurred while fetching data.');
-                setLTVData(null);
-                setLoading(false);
-            });
-    };
-    return (
-        <div className="p-2">
-            <h1 className="text-center text-xl font-bold p-2 text-blue-700">FCL</h1>
-            <div className="conditionsNav p-2 m-2 border border-black rounded-md flex justify-start lg:justify-center items-center gap-1 flex-wrap">
-                <div>
-                    <label className="px-1 font-medium" htmlFor="Product">Product:</label>
-                    <select className="border border-black rounded p-1 w-32" value={product} onChange={(e) => setProduct(e.target.value)}>
-                        <option value="">Select Product</option>
-                        <option value="Retail & Balloon">Retail & Balloon</option>
-                        <option value="Lease">Lease</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="px-1 font-medium" htmlFor="ScoreCard">ScoreCard:</label>
-                    <select className="border border-black rounded p-1 w-32" value={scoreCard} onChange={(e) => setScoreCard(e.target.value)}>
-                        <option value="">Select ScoreCard</option>
-                        <option value="THN">THN</option>
-                        <option value="DLQ">DLQ</option>
-                        <option value="CLN">CLN</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="px-1 font-medium" htmlFor="SalesProgram">SalesProgram:</label>
-                    <select className="border border-black rounded p-1 w-32" value={salesProgram} onChange={(e) => setSalesProgram(e.target.value)}>
-                        <option value="">Select Sales Program</option>
-                        <option value="Standard">Standard</option>
-                        <option value="Incentive & Special">Incentive & Special</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="px-1 font-medium" htmlFor="Term">Term:</label>
-                    <select className="border border-black rounded p-1 w-32" value={term} onChange={(e) => setTerm(e.target.value)}>
-                        <option value="">Select Term</option>
-                        <option value="Regular">Regular</option>
-                        <option value="Extended">Extended</option>
-                    </select>
-                </div>
-                <div>
-                    <label className="px-1 font-medium" htmlFor="Score">Score:</label>
-                    <input
-                        className="border border-black rounded p-1 w-32"
-                        type="number"
-                        value={score}
-                        onChange={(e) => setScore(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label className="px-1 font-medium" htmlFor="Ltv">LTV:</label>
-                    <select
-
-                        className="border border-black rounded p-1 w-32"
-
-                        value={ltv}
-
-                        onChange={(e) => {
-
-                            const value = parseInt(e.target.value, 10);
-
-                            if (!isNaN(value)) {  // Ensure value is a number
-
-                                let ltvCategory = '';
-
-                                if (value <= 95) {
-
-                                    ltvCategory = 'ltv_less_equal_95';
-
-                                } else if (value > 95 && value <= 115) {
-
-                                    ltvCategory = 'ltv_greater_95_less_equal_115';
-
-                                } else if (value > 115) {
-
-                                    ltvCategory = 'ltv_greater_115';
-
-                                }
-
-                                setLtv(ltvCategory);
-
-                            }
-
-                        }}
-
-                        aria-required="true"
-                    >
-                        <option value="">Select LTV</option>
-                        <option value="85">85</option>
-                        <option value="90">90</option>
-                        <option value="95">95</option>
-                        <option value="100">100</option>
-                        <option value="105">105</option>
-                        <option value="110">110</option>
-                        <option value="115">115</option>
-                        <option value="120">120</option>
-                        <option value="125">125</option>
-                        <option value="130">130</option>
-                        <option value="135">135</option>
-                        <option value="140">140</option>
-                    </select>
-
-                </div>
-                <button onClick={handleSearch} className="rounded-full p-2 mx-2 border border-black">
-                    <FaSearch />
-                </button>
-            </div>
-            {loading && (
-                <div className="p-4 text-center w-full text-2xl">
-                    <p>Loading...</p>
-                </div>
-            )}
-            {ltvData && (
-                <div className="p-4 text-center w-full text-2xl">
-                    <h3>Result:</h3>
-                    <p>{ltvData}</p>
-                </div>
-            )}
-            <div className="p-4 text-center w-full text-2xl">
-                {errorMessage && <p>{errorMessage}</p>}
-            </div>
-        </div>
-    );
+   const [product, setProduct] = useState('');
+   const [scoreCard, setScoreCard] = useState('');
+   const [salesProgram, setSalesProgram] = useState('');
+   const [term, setTerm] = useState('');
+   const [score, setScore] = useState('');
+   const [ltv, setLtv] = useState('');
+   const [ltvData, setLTVData] = useState(null);
+   const [errorMessage, setErrorMessage] = useState('');
+   const [loading, setLoading] = useState(false);
+   const handleSearch = () => {
+       if(!ltv) {
+           setErrorMessage('Please select an LTV value.');
+           setLTVData(null);
+           return;
+       }
+       const searchParams = { product, scoreCard, salesProgram, term, score, ltv };
+       setLoading(true);
+       axios.post('http://localhost:8080/search', searchParams)
+           .then((response) => {
+               if (response.data === 'No data available') {
+                   setErrorMessage('No data available');
+                   setLTVData(null);
+               } else {
+                   setLTVData(response.data);
+                   setErrorMessage('');
+               }
+           })
+           .catch((error) => {
+               console.error('Error fetching data:', error);
+               setErrorMessage('An error occurred while fetching data.');
+           })
+           .finally(() => {
+               setLoading(false);
+           });
+   };
+   return (
+<div className="p-2">
+<h1 className="text-center text-xl font-bold p-2 text-blue-700">FCL</h1>
+<div className="conditionsNav p-2 m-2 border border-black rounded-md flex justify-start lg:justify-center items-center gap-1 flex-wrap">
+<div>
+<label className="px-1 font-medium" htmlFor="Product">Product:</label>
+<select className="border border-black rounded p-1 w-32" value={product} onChange={(e) => setProduct(e.target.value)}>
+<option value="">Select Product</option>
+<option value="Retail & Balloon">Retail & Balloon</option>
+<option value="Lease">Lease</option>
+</select>
+</div>
+<div>
+<label className="px-1 font-medium" htmlFor="ScoreCard">ScoreCard:</label>
+<select className="border border-black rounded p-1 w-32" value={scoreCard} onChange={(e) => setScoreCard(e.target.value)}>
+<option value="">Select ScoreCard</option>
+<option value="THN">THN</option>
+<option value="DLQ">DLQ</option>
+<option value="CLN">CLN</option>
+</select>
+</div>
+<div>
+<label className="px-1 font-medium" htmlFor="SalesProgram">SalesProgram:</label>
+<select className="border border-black rounded p-1 w-32" value={salesProgram} onChange={(e) => setSalesProgram(e.target.value)}>
+<option value="">Select Sales Program</option>
+<option value="Standard">Standard</option>
+<option value="Incentive & Special">Incentive & Special</option>
+</select>
+</div>
+<div>
+<label className="px-1 font-medium" htmlFor="Term">Term:</label>
+<select className="border border-black rounded p-1 w-32" value={term} onChange={(e) => setTerm(e.target.value)}>
+<option value="">Select Term</option>
+<option value="Regular">Regular</option>
+<option value="Extended">Extended</option>
+</select>
+</div>
+<div>
+<label className="px-1 font-medium" htmlFor="Score">Score:</label>
+<input className="border border-black rounded p-1 w-32"
+                       type="number"
+                       value={score}
+                       onChange={(e) => setScore(e.target.value)}
+                   />
+</div>
+<div>
+<label className="px-1 font-medium" htmlFor="Ltv">LTV:</label>
+<select className="border border-black rounded p-1 w-32" value={ltv} onChange={(e) => setLtv(e.target.value)}>
+<option value="">Select LTV</option>
+<option value="85">85</option>
+<option value="90">90</option>
+<option value="95">95</option>
+<option value="100">100</option>
+<option value="105">105</option>
+<option value="110">110</option>
+<option value="115">115</option>
+<option value="120">120</option>
+<option value="125">125</option>
+</select>
+</div>
+<button onClick={handleSearch} className="rounded-full p-2 mx-2 border border-black">
+<FaSearch />
+</button>
+</div>
+           {loading && <p className="text-center text-xl">Loading...</p>}
+           {ltvData && (
+<div className="p-4 text-center w-full text-2xl">
+<h3>Result:</h3>
+<p>{ltvData}</p>
+</div>
+           )}
+<div className="p-4 text-center w-full text-2xl">
+               {errorMessage && <p>{errorMessage}</p>}
+</div>
+</div>
+   );
 };
 export default FCLPage;
