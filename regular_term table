@@ -1,0 +1,27 @@
+CREATE TABLE `regular_term` (
+  `id` int(11) NOT NULL,
+  `score_range_start` int(11) NOT NULL,
+  `score_range_end` int(11) NOT NULL,
+  `ltv_less_equal_95` decimal(10,4) DEFAULT NULL,
+  `ltv_greater_95_less_equal_115` decimal(10,4) DEFAULT NULL,
+  `ltv_greater_115` decimal(10,4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `regular_term`
+--
+
+INSERT INTO `regular_term` (`id`, `score_range_start`, `score_range_end`, `ltv_less_equal_95`, `ltv_greater_95_less_equal_115`, `ltv_greater_115`) VALUES
+(1, 70, 373, 6.8391, 8.9544, 13.6190),
+(2, 374, 389, 5.4407, 8.6406, 11.3830),
+(3, 390, 403, 4.6227, 8.3379, 8.6492),
+(4, 404, 413, 4.0424, 7.7700, 7.7803),
+(5, 414, 422, 3.5922, 7.1314, 7.6700),
+(6, 423, 432, 3.2144, 6.5381, 7.0637),
+(7, 433, 440, 2.9134, 6.0452, 7.5559),
+(8, 441, 448, 2.6440, 7.2055, 7.2055),
+(9, 449, 456, 2.4149, 6.7057, 6.7057),
+(10, 457, 463, 2.2093, 6.1721, 6.1721),
+(11, 464, 471, 2.0145, 5.7101, 5.7101),
+(12, 472, 479, 1.8365, 5.3194, 5.3194),
+(13, 480, 488, 1.6645, 4.9751, 5.1571);
