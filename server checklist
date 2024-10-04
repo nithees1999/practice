@@ -1,0 +1,68 @@
+const express = require('express');
+const mysql = require('mysql');
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Test",
+})
+
+// Checklist
+// Get Description
+app.get('/api/getDescription', (req, res) => {
+    const sql = 'SELECT DISTINCT `Description` FROM Checklist';
+    db.query(sql, (err, results) => {
+        if (err) throw err;
+        res.json(results.map(row => row.Description));
+    });
+});
+
+// Get all data (initial page load)
+app.get('/api/Checklist', (req, res) => {
+    const sql = 'SELECT * FROM Checklist';
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json(results);
+    });
+});
+// Filter Data
+app.post('/api/Checklist', (req, res) => {
+    const { Description } = req.body;
+    let sql = 'SELECT * FROM Checklist WHERE 1=1';
+    let queryParams = [];
+    if (Description) {
+        sql += ' AND `Description` = ?';
+        queryParams.push(Description);
+    }
+    
+    db.query(sql, queryParams, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json(results);
+    });
+});
+
+
+
+
+// Sending response to the client
+app.get('/', (req, res) => {
+    return res.json("From Backend Side")
+});
+// Run on local machine
+app.listen(8080, () => {
+    console.log("listening on http://localhost:8080")
+});
