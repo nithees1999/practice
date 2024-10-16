@@ -1,0 +1,42 @@
+// AutoApproval
+// Get State
+app.get('/api/getApprovalStates', async (req, res) => {
+    const query = 'SELECT DISTINCT State FROM autoapproval';
+    const result = await db.query(query);
+    res.json(result.recordset);
+});
+// Get Tier
+app.get('/api/getApprovalTier', async (req, res) => {
+    const query = 'SELECT DISTINCT Tier FROM autoapproval';
+    const result = await db.query(query);
+    res.json(result.recordset);
+});
+// Get all data (initial page load)
+app.get('/api/autoapproval', async (req, res) => {
+    const query = 'SELECT * FROM autoapproval';
+    const result = await db.query(query);
+    res.json(result.recordset);
+});
+// Filter Data
+app.post('/api/autoapproval', async (req, res) => {
+    const { State, FicoScore, Tier } = req.body;
+    let query = `SELECT * FROM autoapproval WHERE 1=1`;
+    let queryParams = [];
+    if (State) {
+        query += ' AND "State" = ?';
+        queryParams.push(State);
+    }
+    if (FicoScore) {
+        query += ' AND "FICO_Score" = ?';
+        queryParams.push(FicoScore);
+    }
+    if (Tier) {
+        query += ' AND "Tier" = ?';
+        queryParams.push(Tier);
+    }
+    query = SqlString.format(query, queryParams);
+    const result = await db.query(query);
+    res.json(result.recordset);
+});
+
+
