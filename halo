@@ -1,104 +1,145 @@
-import React, { useState } from 'react';
-const haloData = [
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "3CZRZ2H54PM700436", Year: 2023, Make: "Honda", Model: "RZ2H5PEW", Term: 36, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 9.20, AdjustedRate: 9.33, Difference: 0.13, Rule: null, OverrideLevel: 1 },
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "3CZRZ2H54PM700436", Year: 2023, Make: "Honda", Model: "RZ2H5PEW", Term: 36, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 10.50, AdjustedRate: 10.66, Difference: 0.16, Rule: null, OverrideLevel: 1 },
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "19UDE4H24PA001612", Year: 2023, Make: "Acura", Model: "DE4H2PJW", Term: 24, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 6.10, AdjustedRate: 6.25, Difference: 0.15, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "19UDE4H24PA001612", Year: 2023, Make: "Acura", Model: "DE4H2PJW", Term: 24, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 8.14, AdjustedRate: 8.24, Difference: 0.10, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "19UDE4H32PA000340", Year: 2023, Make: "Acura", Model: "DE4H3PJW", Term: 24, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 7.00, AdjustedRate: 7.34, Difference: 0.34, Rule: null, OverrideLevel: 1 },
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "19UDE4H32PA000340", Year: 2023, Make: "Acura", Model: "DE4H3PJW", Term: 24, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 11.45, AdjustedRate: 11.56, Difference: 0.11, Rule: null, OverrideLevel: 1 },
-    { ProductType: "Balloon", Condition: "New", VIN: "3CZRZ1H3XPM701650", Year: 2023, Make: "Honda", Model: "RZ1H3PEW", Term: 24, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 8.70, AdjustedRate: 8.81, Difference: 0.11, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Balloon", Condition: "New", VIN: "3CZRZ1H3XPM701650", Year: 2023, Make: "Honda", Model: "RZ1H3PEW", Term: 24, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 7.50, AdjustedRate: 7.60, Difference: 0.10, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Balloon", Condition: "New", VIN: "3CZRZ2H54PM700436", Year: 2023, Make: "Honda", Model: "RZ2H5PEW", Term: 24, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 5.95, AdjustedRate: 6.23, Difference: 0.28, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Balloon", Condition: "New", VIN: "3CZRZ2H54PM700436", Year: 2023, Make: "Honda", Model: "RZ2H5PEW", Term: 24, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 6.60, AdjustedRate: 6.70, Difference: 0.10, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Balloon", Condition: "New", VIN: "19UDE4H24PA001612", Year: 2023, Make: "Acura", Model: "DE4H2PJW", Term: 36, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 9.20, AdjustedRate: 9.33, Difference: 0.13, Rule: null, OverrideLevel: 3 },
-    { ProductType: "Balloon", Condition: "New", VIN: "19UDE4H24PA001612", Year: 2023, Make: "Acura", Model: "DE4H2PJW", Term: 36, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 10.50, AdjustedRate: 10.66, Difference: 0.16, Rule: null, OverrideLevel: 3 },
-    { ProductType: "Retail", Condition: "New", VIN: "1FA6P8TH5J5100200", Year: 2023, Make: "Ford", Model: "Mustang", Term: 36, CoApplicant: "N/A", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "N/A", BuyRate: 5.50, AdjustedRate: 5.65, Difference: 0.15, Rule: null, OverrideLevel: 1 },
-    { ProductType: "Retail", Condition: "Used/Certified", VIN: "1FA6P8TH5J5100201", Year: 2023, Make: "Ford", Model: "Fusion", Term: 36, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO AHFC Associate", BuyRate: 6.20, AdjustedRate: 6.35, Difference: 0.15, Rule: null, OverrideLevel: 1 },
-    { ProductType: "Balloon", Condition: "New", VIN: "2FMPK4AP1JBC00358", Year: 2023, Make: "Ford", Model: "Edge", Term: 36, CoApplicant: "N/A", EmploymentStatusApp: "N/A", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 6.80, AdjustedRate: 6.95, Difference: 0.15, Rule: null, OverrideLevel: 2 },
-    { ProductType: "Balloon", Condition: "New", VIN: "2FMPK4AP1JBC00359", Year: 2023, Make: "Ford", Model: "Explorer", Term: 36, CoApplicant: "Joint", EmploymentStatusApp: "Employed", EmploymentStatusCoApp: "HALO Honda Associate", BuyRate: 7.30, AdjustedRate: 7.45, Difference: 0.15, Rule: null, OverrideLevel: 2 },
-];
+import React, { useEffect, useState } from 'react';
+
+import axios from 'axios';
+
 const HaloPage = () => {
+
+    const [haloData, setHaloData] = useState([]);
+
     const [filters, setFilters] = useState({
+
         productType: '',
+
         condition: '',
+
         employmentStatusApp: '',
+
         employmentStatusCoApp: '',
-    });
-    const handleChange = (e) => {
-        setFilters({ ...filters, [e.target.name]: e.target.value });
-    };
-    const filteredData = haloData.filter(item => {
-        return (
-            (filters.productType ? item.ProductType === filters.productType : true) &&
-            (filters.condition ? item.Condition === filters.condition : true) &&
-            (filters.employmentStatusApp ? item.EmploymentStatusApp === filters.employmentStatusApp : true) &&
-            (filters.employmentStatusCoApp ? item.EmploymentStatusCoApp === filters.employmentStatusCoApp : true)
-        );
+
     });
 
+    const [filteredData, setFilteredData] = useState([]);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+
+            const response = await axios.get('/api/halo-data'); // Update with your API endpoint
+
+            setHaloData(response.data);
+
+        };
+
+        fetchData();
+
+    }, []);
+
+    const handleChange = (e) => {
+
+        const { name, value } = e.target;
+
+        setFilters((prevFilters) => ({
+
+            ...prevFilters,
+
+            [name]: value,
+
+        }));
+
+    };
+
+    const handleSearch = (e) => {
+
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        const { productType, condition, employmentStatusApp, employmentStatusCoApp } = filters;
+
+        const filtered = haloData.filter((item) => {
+
+            return (
+
+                (productType ? item.ProductType === productType : true) &&
+
+                (condition ? item.Condition === condition : true) &&
+
+                (employmentStatusApp ? item.EmploymentStatusApp === employmentStatusApp : true) &&
+
+                (employmentStatusCoApp ? item.EmploymentStatusCoApp === employmentStatusCoApp : true)
+
+            );
+
+        });
+
+        setFilteredData(filtered);
+
+    };
+
+    const uniqueProductTypes = [...new Set(haloData.map(item => item.ProductType))];
+
+    const uniqueConditions = [...new Set(haloData.map(item => item.Condition))];
+
+    const uniqueEmploymentStatusesApp = [...new Set(haloData.map(item => item.EmploymentStatusApp))];
+
+    const uniqueEmploymentStatusesCoApp = [...new Set(haloData.map(item => item.EmploymentStatusCoApp))];
 
     return (
         <>
-            <h1 className="text-center text-xl font-bold p-2 text-blue-700">HALO Page</h1>
+            <h1 className="text-center text-xl font-bold p-2 text-blue-700">Halo Page</h1>
             <form
                 className="conditionsNav p-2 m-2 border border-black rounded-md flex justify-start lg:justify-center items-center gap-1 flex-wrap"
-              
+                onSubmit={handleSearch} 
             >
-            <section>
-                    <label className="px-1 font-medium" htmlFor="producttype">Product Type:</label>
-                    <select name="producttype" id="producttype"
-                        value={selectedProductType}
-                        onChange={(e) => setSelectedProductType(e.target.value)}
-                        className="border border-black rounded p-2" required
-                    >
+                <section>
+                <label className="px-1 font-medium" htmlFor="producttype">Product Type:</label>
+                    <select name="productType" id="productType" onChange={handleChange} className="border border-black rounded p-2" required>
                         <option value="">NA</option>
-                        {uniqueProductTypes.map((type, index) => (
-                            <option key={index} value={type}>{type}</option>
+
+                        {uniqueProductTypes.map(type => (
+                            <option key={type} value={type}>{type}</option>
+
                         ))}
                     </select>
                 </section>
                 <section>
-                    <label className="px-1 font-medium" htmlFor="condition">Condition:</label>
-                    <select name="condition" id="condition"
-                        value={selectedCondition}
-                        onChange={(e) => setSelectedCondition(e.target.value)}
-                        className="border border-black rounded p-2" required
-                    >
+                <label className="px-1 font-medium" htmlFor="condition">Condition:</label>
+                    <select name="condition" id="condition" onChange={handleChange} className="border border-black rounded p-2" required>
                         <option value="">NA</option>
-                        {uniqueConditions.map((cond, index) => (
-                            <option key={index} value={cond}>{cond}</option>
+
+                        {uniqueConditions.map(cond => (
+                            <option key={cond} value={cond}>{cond}</option>
+
+                        ))}
+                    </select>
+                </section>
+                <section>
+                    <label className="px-1 font-medium" htmlFor="employmentStatusApp">Employment Status (App):</label>
+                    <select name="employmentStatusApp" id="employmentStatusApp" onChange={handleChange} className="border border-black rounded p-2" required>
+                        <option value="">NA</option>
+
+                        {uniqueEmploymentStatusesApp.map(status => (
+                            <option key={status} value={status}>{status}</option>
+
+                        ))}
+                    </select>
+                </section>
+                <section>
+                    <label className="px-1 font-medium" htmlFor="employmentStatusCoApp">Employment Status (Co-App):</label>
+                    <select name="employmentStatusCoApp" id="employmentStatusCoApp" onChange={handleChange} className="border border-black rounded p-2" required>
+                        <option value="">NA</option>
+
+                        {uniqueEmploymentStatusesCoApp.map(status => (
+                            <option key={status} value={status}>{status}</option>
+
                         ))}
                     </select>
                 </section>
                 <button type="submit" className="rounded-md p-2 mx-2 border border-black">Submit</button>
-                <label>
-                    Employment Status (Applicant):
-                    <select name="employmentStatusApp" onChange={handleChange}>
-                        <option value="">All</option>
-                        <option value="Employed">Employed</option>
-                        <option value="N/A">N/A</option>
-                    </select>
-                </label>
-                <label>
-                    Employment Status (Co-Applicant):
-                    <select name="employmentStatusCoApp" onChange={handleChange}>
-                        <option value="">All</option>
-                        <option value="HALO AHFC Associate">HALO AHFC Associate</option>
-                        <option value="HALO Honda Associate">HALO Honda Associate</option>
-                        <option value="N/A">N/A</option>
-                    </select>
-                </label>
-            </div>
-
-            <button type="submit" className="rounded-md p-2 mx-2 border border-black">Submit</button>
             </form>
 
-
-
-            <section className="min-h-screen py-8 px-4 m-2 border border-black rounded-md">
-            <div style={{ overflowX: 'auto' }}>
-            <table className="w-full">
-                <thead className="border border-black">
+          <section className="min-h-screen py-8 px-4 m-2 border border-black rounded-md">
+                <div style={{ overflowX: 'auto' }}>
+                    <table className="w-full">
+                        <thead className="border border-black">
                     <tr>
                         <th className="p-4 border border-black text-blue-700">Product Type</th>
                         <th className="p-4 border border-black text-blue-700">Condition</th>
@@ -118,30 +159,44 @@ const HaloPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredData.map((item, index) => (
-                        <tr key={index}>
-                            <td className="p-2 border border-black">{item.ProductType}</td>
-                            <td className="p-2 border border-black">{item.Condition}</td>
-                            <td className="p-2 border border-black">{item.VIN}</td>
-                            <td className="p-2 border border-black">{item.Year}</td>
-                            <td className="p-2 border border-black">{item.Make}</td>
-                            <td className="p-2 border border-black">{item.Model}</td>
-                            <td className="p-2 border border-black">{item.Term}</td>
-                            <td className="p-2 border border-black">{item.CoApplicant}</td>
-                            <td className="p-2 border border-black">{item.EmploymentStatusApp}</td>
-                            <td className="p-2 border border-black">{item.EmploymentStatusCoApp}</td>
-                            <td className="p-2 border border-black">{item.BuyRate}</td>
-                            <td className="p-2 border border-black">{item.AdjustedRate}</td>
-                            <td className="p-2 border border-black">{item.Difference}</td>
-                            <td className="p-2 border border-black">{item.Rule}</td>
-                            <td className="p-2 border border-black">{item.OverrideLevel}</td>
-                        </tr>
-                    ))}
+
+                    {filteredData.length > 0 ? (
+
+                        filteredData.map((item, index) => (
+                            <tr key={index}>
+                                <td className="p-2 border border-black">{item.ProductType}</td>
+                                <td className="p-2 border border-black">{item.Condition}</td>
+                                <td className="p-2 border border-black">{item.VIN}</td>
+                                <td className="p-2 border border-black">{item.Year}</td>
+                                <td className="p-2 border border-black">{item.Make}</td>
+                                <td className="p-2 border border-black">{item.Model}</td>
+                                <td className="p-2 border border-black">{item.Term}</td>
+                                <td className="p-2 border border-black">{item.CoApplicant}</td>
+                                <td className="p-2 border border-black">{item.EmploymentStatusApp}</td>
+                                <td className="p-2 border border-black">{item.EmploymentStatusCoApp}</td>
+                                <td className="p-2 border border-black">{item.BuyRate}</td>
+                                <td className="p-2 border border-black">{item.AdjustedRate}</td>
+                                <td className="p-2 border border-black">{item.Difference}</td>
+                                <td className="p-2 border border-black">{item.Rule}</td>
+                                <td className="p-2 border border-black">{item.OverrideLevel}</td>
+                            </tr>
+
+                        ))
+
+                    ) : (
+                        <tr>
+                                    <td colSpan={10} className="text-center p-4 border border-black">No data available</td>
+                                </tr>
+
+                    )}
                 </tbody>
             </table>
             </div>
             </section>
         </>
+
     );
+
 };
+
 export default HaloPage;
