@@ -1,0 +1,28 @@
+RSS# 	Wave	"CCR/
+CR"	"Active/
+Deactive"	Comments	Contract Screen	Product	Rule Description	To Dealer (Y/N)	Warning vs Error	When to Use	Rule Details / Logic	Rule #	Credit or Contract	Parameter	Override	Open Issues / Questions	Business Response	Open Questions or Actions?	Discussion Order
+	Wave 39B				Closing Prep (Contract Info)	Lease	Active AHFC account with duplicate VIN 	Y	Warning		If VIN Validation Return Status = true and VIN Validation Duplicate VIN = true	138	Contract		"Product | Override
+-----------------------------
+IAUTO | 2
+
+Default | 3"				
+	Wave 39B				Closing Prep (Contract Info)	Retail	Active AHFC account with duplicate VIN 	Y	Warning		If VIN Validation Return Status = true and VIN Validation Duplicate VIN = true	138	Contract		"Product | Override
+-----------------------------
+IAUTO | 2
+
+Default | 3"				
+	Wave 39B				Closing Prep (Contract Info)	MC	Active AHFC account with duplicate VIN 	Y	Warning		If VIN Validation Return Status = true and VIN Validation Duplicate VIN = true	138	Contract		"Product | Override
+-----------------------------
+IAUTO | 2
+
+Default | 3"				
+	Wave 39B				Closing Prep (Contract Info)	PE	Active AHFC account with duplicate VIN 	Y	Warning		If VIN Validation Return Status = true and VIN Validation Duplicate VIN = true	138	Contract		"Product | Override
+-----------------------------
+IAUTO | 2
+
+Default | 3"				
+	Wave 39B				Closing Prep (Contract Info)	Marine 	Active AHFC account with duplicate VIN 	Y	Warning		If VIN Validation Return Status = true and VIN Validation Duplicate VIN = true	138	Contract		"Product | Override
+-----------------------------
+IAUTO | 2
+
+Default | 3"				
