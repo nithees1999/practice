@@ -1,0 +1,290 @@
+RSS# 	Wave	"CCR/
+CR"	"Active/
+Deactive"	Comments	Contract Screen	Product	Rule Description	To Dealer (Y/N)	Warning vs Error	When to Use	Rule Details / Logic	Rule #	Credit or Contract	Parameter	Override	Open Issues / Questions	Business Response
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	Lease	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+without TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End 
+LAppLTV = (Approved Finance Amount  +  Max Back End) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = true AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))"	"New
+
+1150"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	CR 45577 V5 - Update Model ID Advance Criteria	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	"Retail
+"	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+without TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End 
+LAppLTV = (Approved Finance Amount  +  Max Back End) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = true AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))"	"New
+
+1150"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	CR 45577 V5 - Update Model ID Advance Criteria	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	MC	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+without TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End 
+LAppLTV = (Approved Finance Amount  +  Max Back End) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = true AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))"	"New
+
+1150"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	CR 45577 V5 - Update Model ID Advance Criteria	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	PE	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+without TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End 
+LAppLTV = (Approved Finance Amount  +  Max Back End) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = true AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))"	"New
+
+1150"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	CR 45577 V5 - Update Model ID Advance Criteria	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	Marine	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+without TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End 
+LAppLTV = (Approved Finance Amount  +  Max Back End) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = true AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))"	"New
+
+1150"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	CR 45577 V5 - Update Model ID Advance Criteria	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	Lease	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+with TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End + Contract Tax + Contract Doc Fee + Contract Total Fees
+LAppLTV = (Approved Finance Amount  +  Max Back End +Contract Tax + Contract Doc Fee + Contract Total Fees) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = false AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))
+"	"New
+
+1151"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	"CR 45577 V5 - Update Model ID Advance Criteria Retail Mapping:
+Contract Tax = “Sales Tax” 
+Contract Doc Fee = “Document Fee” 
+Contract Other Amount = “Other Amount” 
+Contract Total Fees = “Total Fees”"	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	"Retail
+"	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+with TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End + Contract Tax + Contract Doc Fee + Contract Total Fees
+LAppLTV = (Approved Finance Amount  +  Max Back End +Contract Tax + Contract Doc Fee + Contract Total Fees) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = false AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))
+"	"New
+
+1151"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	"CR 45577 V5 - Update Model ID Advance Criteria Retail Mapping:
+Contract Tax = “Sales Tax” 
+Contract Doc Fee = “Document Fee” 
+Contract Other Amount = “Other Amount” 
+Contract Total Fees = “Total Fees”"	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	MC	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+with TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End + Contract Tax + Contract Doc Fee + Contract Total Fees
+LAppLTV = (Approved Finance Amount  +  Max Back End +Contract Tax + Contract Doc Fee + Contract Total Fees) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = false AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))
+"	"New
+
+1151"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	"CR 45577 V5 - Update Model ID Advance Criteria Retail Mapping:
+Contract Tax = “Sales Tax” 
+Contract Doc Fee = “Document Fee” 
+Contract Other Amount = “Other Amount” 
+Contract Total Fees = “Total Fees”"	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	PE	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+with TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End + Contract Tax + Contract Doc Fee + Contract Total Fees
+LAppLTV = (Approved Finance Amount  +  Max Back End +Contract Tax + Contract Doc Fee + Contract Total Fees) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = false AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))
+"	"New
+
+1151"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	"CR 45577 V5 - Update Model ID Advance Criteria Retail Mapping:
+Contract Tax = “Sales Tax” 
+Contract Doc Fee = “Document Fee” 
+Contract Other Amount = “Other Amount” 
+Contract Total Fees = “Total Fees”"	
+"45577
+45578
+45597
+44324"			Active	New	Closing Prep (Contract Info)	Marine	Advance exceeds approval	Y	Warning	"Approval
+Approved Max Amount Financed = 0
+with TTL"	"Retail:
+LL3Max = Approved Finance Amount  +  Max Back End + Contract Tax + Contract Doc Fee + Contract Total Fees
+LAppLTV = (Approved Finance Amount  +  Max Back End +Contract Tax + Contract Doc Fee + Contract Total Fees) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Lease:
+LL3Max = Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee 
+LAppLTV = (Approved Gross Cap Cost  +  Max Back End + Hard Adds + $1000 Soft Adds + Acquisition Fee) / Underwriting Collateral Value
+LContractLTV = CONTRACT FINANCED AMOUNT /Contract Collateral Value
+
+Present an error when...
+Decision = Approval AND Approved Max Amount Financed = 0 AND Approved Include TTL in Backend = false AND 
+(CONTRACT FINANCED AMOUNT / LL3Max > 105% 
+ OR
+ ((CONTRACT FINANCED AMOUNT / LL3Max > 100% and <= 105%) AND LContractLTV > 100% AND LCONTRACTLTV - LAPPLTV > 3%))
+"	"New
+
+1151"	Contract	"Actual = CONTRACT FINANCED AMOUNT
+
+Parameter = LL3Max"	"Amount      Override Level
+    >=                      =
+     0                      4"	"CR 45577 V5 - Update Model ID Advance Criteria Retail Mapping:
+Contract Tax = “Sales Tax” 
+Contract Doc Fee = “Document Fee” 
+Contract Other Amount = “Other Amount” 
+Contract Total Fees = “Total Fees”"	
