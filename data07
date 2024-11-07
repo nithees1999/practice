@@ -1,0 +1,20 @@
+CREATE TABLE AdvanceExceedsApproval (
+   RSS# VARCHAR(100),         -- For RSS# column, using VARCHAR to store numbers with possible text.
+   Wave VARCHAR(100),              -- For Wave column.
+   [CCR/CR] VARCHAR(100),            -- For "CCR/CR" column.
+   [Active/Deactive] VARCHAR(100),   -- For "Active/Deactive" column.
+   Comments VARCHAR(255),         -- For Comments column.
+   [Contract Screen] VARCHAR(100),   -- For Contract Screen column.
+   Product VARCHAR(100),          -- For Product column.
+   [Rule Description] VARCHAR(255),  -- For Rule Description column.
+   [To Dealer(Y/N)] CHAR(1),           -- For To Dealer (Y/N) column with space (Y or N).
+   [Warning vs Error] VARCHAR(100),      -- For Warning vs Error column.
+   [When to Use] VARCHAR(255),        -- For When to Use column.
+   [Rule Details/Logic] TEXT,         -- For Rule Details / Logic column (use TEXT for large text data).
+   Rule# VARCHAR(100),        -- For Rule # column.
+   [Credit Or Contract] VARCHAR(100),  -- For Credit or Contract column.
+   Parameter VARCHAR(100),        -- For Parameter column.
+   Override VARCHAR(100),         -- For Override column.
+   [Open Issues/Questions] VARCHAR(255),      -- For Open Issues / Questions column.
+   [Business Response] VARCHAR(100)          -- For Business Response column.
+);
