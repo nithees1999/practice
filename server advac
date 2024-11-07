@@ -1,0 +1,11 @@
+ // Fetch  AdvanceExceedsApproval 
+app.get('/api/AdvanceExceedsApproval', async (req, res) => {
+    try {
+        const query = `SELECT * FROM  AdvanceExceedsApproval`; 
+        const result = await db.query(query); 
+        res.json(result.recordset); 
+    } catch (err) {
+        console.error("Error fetching  AdvanceExceedsApproval:", err);
+        res.status(500).json({ error: "Error fetching data" });
+    }
+ });
