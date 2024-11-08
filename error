@@ -1,0 +1,69 @@
+CREATE TABLE Par (
+   RSS# VARCHAR(50),
+   Wave VARCHAR(50),
+   [CCR/CR] VARCHAR(50),
+   [Active/Deactive] VARCHAR(50),
+   Comments VARCHAR(255),
+   [Contract Screen] VARCHAR(100),
+   Product VARCHAR(50),
+   [Rule Description] VARCHAR(255),
+   [To Dealer(Y/N)] CHAR(1),
+   [Warning Vs Error] VARCHAR(50),
+   [When To Use] VARCHAR(255),
+   [Rule Details/Logic] VARCHAR(255),
+   Rule# INT,
+   [Credit or Contract] VARCHAR(50),
+   Parameter INT,
+   Override INT,
+   [Open Issues/Questions] VARCHAR(255),
+   [Business Response] VARCHAR(255)
+);
+
+INSERT INTO Par
+   (
+   RSS# ,
+   Wave ,
+   [CCR/CR] ,
+   [Active/Deactive] ,
+   Comments ,
+   [Contract Screen] ,
+   Product,
+   [Rule Description],
+   [To Dealer(Y/N)],
+   [Warning Vs Error],
+   [When To Use],
+   [Rule Details/Logic] ,
+   Rule# ,
+   [Credit or Contract],
+   Parameter ,
+   Override ,
+   [Open Issues/Questions] ,
+   [Business Response] )
+VALUES
+   ('',
+   'p4',
+   '',
+   'Active',
+   '',
+   'Closing Prep (Contract Info)',
+   'MC',
+    'Collateral age is greater than parameter',
+	'Y',
+	'Warning',
+	'',
+    'Age of vehicle <= maximum eligible model year',
+	23,
+	'Contract',
+	'',
+	4,
+	'Status:  Pwc Open item will identify what param will be
+
+Will this come from Model file, is mc in the model file
+
+How is parameter (maximum eligible model year) defined?
+
+Where is this defined?  Believe from PRISM  because they only send back eligible program for eligible model',
+
+'Run Rule only for Power Sport V12
+Yes & Yes M/C are in the Model File');
+   
