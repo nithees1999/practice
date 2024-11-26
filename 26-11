@@ -1,0 +1,56 @@
+CREATE TABLE ContractRateIsLessThanMinimumAllowed (
+   RSS# VARCHAR(50),
+   Wave VARCHAR(50),
+   [CCR/CR] VARCHAR(50),
+   [Active/Deactive] VARCHAR(50),
+   Comments VARCHAR(255),
+   [Contract Screen] VARCHAR(100),
+   Product VARCHAR(50),
+   [Rule Description] VARCHAR(255),
+   [To Dealer(Y/N)] CHAR(1),
+   [Warning Vs Error] VARCHAR(50),
+   [When To Use] VARCHAR(255),
+   [Rule Details/Logic] VARCHAR(255),
+   Rule# INT,
+   [Credit or Contract] VARCHAR(50),
+   Parameter INT,
+   Override INT,
+   [Open Issues/Questions] VARCHAR(255),
+   [Business Response] VARCHAR(255)
+);
+
+
+
+INSERT INTO ContractRateIsLessThanMinimumAllowed
+   (RSS# ,
+   Wave ,
+   [CCR/CR] ,
+   [Active/Deactive] ,
+   Comments ,
+   [Contract Screen] ,
+   Product,
+   [Rule Description],
+   [To Dealer(Y/N)],
+   [Warning Vs Error],
+   [When To Use],
+   [Rule Details/Logic] ,
+   Rule# ,
+   [Credit or Contract],
+   Parameter ,
+   Override ,
+   [Open Issues/Questions] ,
+   [Business Response] )
+VALUES
+   ('', '', '', 'Active', '', 'Closing Prep (Contract Info)', 'Lease',
+    'Contract Rate is less than Minimum Allowed', 'Yes', 'Warning', '',
+    '1.  Start with the ProgramRateBase value coming from PRISM in the sales program interface. 
+2.  Apply any modifier that will increase the rate until all modifiers that can increase the rate have been applied. 
+3.  Apply any modifier that will decrease the rate until all modifiers that can decrease the rate have been applied. 
+4.  If the result from steps 2 and 3 is greater than the ProgramRateMax from PRISM in the sales program interface, then set the adjusted program rate to the ProgramRateMax.  If the result from steps 2 and 3 is less than the ProgramRateMin from PRISM in the sales program interface, then set the adjusted program rate to the ProgramRateMin.  Otherwise, the result from steps 2 and 3 is the adjusted program rate. 
+5.  The adjusted program rate is the new ContractRateMin. 
+6.  Take the DealerParticipationSpreadMax from PRISM in the sales program interface and add it to the adjusted program rate to arrive at the ContractRateMax. 
+7.  The contact rate on the actual contract being worked must fall between the ContractRateMin and the ContractRateMax, otherwise an error is generated indicating that the contarct rate is outside the contract rate spread. "
+', 43, 'Contract', '11/5: Sales Program - nn. Dealer Participation Spread Max', '4', '', '');
+   
+
+
