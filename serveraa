@@ -1,0 +1,94 @@
+const express = require('express');
+const cors = require("cors");
+const mysql = require('mssql/msnodesqlv8');
+const SqlString = require('tsqlstring');
+
+const config = {
+    server: 'LTIN508758\MSSQLSERVER22',
+    //server: 'LTIN527389',
+    driver: "SQL Server Native Client 11.0",
+    database: "ForTestDB",
+    connectionTimeout: 150000,
+    options: {
+        encrypt: false,
+        trustedConnection: true
+    }
+};
+const config2 = {
+     server: 'LTIN508758\MSSQLSERVER22',
+    //server: 'LTIN527389',
+    driver: "SQL Server Native Client 11.0",
+    database: "rules",
+    connectionTimeout: 150000,
+    options: {
+        encrypt: false,
+        trustedConnection: true
+    }
+};
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+const db = new mysql.ConnectionPool(config);
+const db2 = new mysql.ConnectionPool(config2);
+
+db.connect()
+    .then(() => console.log('Connected to ForTestDB'))
+    .catch(err => console.error('Connection error to ForTestDB:', err));
+
+db2.connect()
+    .then(() => console.log('Connected to rules database'))
+    .catch(err => console.error('Connection error to rules database:', err));
+
+
+// AutoApproval
+// Get State
+app.get('/api/getApprovalStates', async (req, res) => {
+    const query = 'SELECT DISTINCT State FROM autoapproval';
+    const result = await db.query(query);
+    res.json(result.recordset.map(item => item['State']));
+});
+// Get Tier
+app.get('/api/getApprovalTiers', async (req, res) => {
+    const query = 'SELECT DISTINCT Tier FROM autoapproval';
+    const result = await db.query(query);
+    res.json(result.recordset.map(item => item['Tier']));
+});
+// Get all data (initial page load)
+app.get('/api/autoapproval', async (req, res) => {
+    const query = 'SELECT * FROM autoapproval';
+    const result = await db.query(query);
+    res.json(result.recordset);
+});
+// Filter Data
+app.post('/api/autoapprovalFilter', async (req, res) => {
+    const { State, FICO_Score, Tier } = req.body;
+    let query = `SELECT * FROM autoapproval WHERE 1=1`;
+    let queryParams = [];
+    if (State) {
+        query += ' AND "State" = ?';
+        queryParams.push(State);
+    }
+    if (FICO_Score) {
+        query += ' AND "FICO_Score" = ?';
+        queryParams.push(FICO_Score);
+    }
+    if (Tier) {
+        query += ' AND "Tier" = ?';
+        queryParams.push(Tier);
+    }
+    query = SqlString.format(query, queryParams);
+    const result = await db.query(query);
+    res.json(result.recordset);
+});
+
+
+// Sending response to the client
+app.get('/', (req, res) => {
+    return res.json("From Backend Side")
+})
+
+//run on local machine
+app.listen(8080, () => {
+    console.log(`listening on http://localhost:8080`)
+})
