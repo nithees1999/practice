@@ -1,0 +1,43 @@
+
+CREATE TABLE FirstPaymentAmountMustEqualRemainingMonthlyPaymentAmount (
+  RSS# VARCHAR(50),
+  Wave VARCHAR(50),
+  [CCR/CR] VARCHAR(50),
+  [Active/Deactive] VARCHAR(50),
+  Comments VARCHAR(255),
+  [Contract Screen] VARCHAR(100),
+  Product VARCHAR(50),
+  [Rule Description] VARCHAR(255),
+  [To Dealer(Y/N)] CHAR(1),
+  [Warning Vs Error] VARCHAR(50),
+  [When To Use] VARCHAR(255),
+  [Rule Details/Logic] VARCHAR(MAX), -- Changed to VARCHAR(MAX) to accommodate lengthy text
+  Rule# INT,
+  [Credit or Contract] VARCHAR(50),
+  Parameter VARCHAR(255),
+  Override VARCHAR(255),
+  [Open Issues/Questions] VARCHAR(255),
+  [Business Response] VARCHAR(255),
+  [Open Questions or Actions?] VARCHAR(50),
+  [Discussion Order] VARCHAR(50)
+
+
+);
+INSERT INTO FirstPaymentAmountMustEqualRemainingMonthlyPaymentAmount
+  (RSS#, Wave, [CCR/CR], [Active/Deactive], Comments, [Contract Screen], Product,
+  [Rule Description], [To Dealer(Y/N)], [Warning Vs Error], [When To Use],
+  [Rule Details/Logic], Rule#, [Credit or Contract], Parameter, Override,
+  [Open Issues/Questions], [Business Response], [Open Questions or Actions?],
+  [Discussion Order])
+VALUES
+  ('', '', '272', 'Active', '', 'Closing Prep (Contract Info)', 'ILEAS',
+   'First Payment Amount must equal Remaining Monthly Payment Amount', 'Y', 'Warning', '',
+   'If the Remaining Payment Amount does not equal First Payment Amount, present an error
+(Rule note: disclosure section first payment amount must = remaining payment amount within ? Tolerance)
+
+Disclosure First Payment Amount <> (Remaining) Monthly Payment Amount
+',
+   180, 'Contract', '', 2, '(11/6: Not an existing or planned Completion Rule (or PED item) - configure as a Tolerance Rule.  Rule needs to factor in whether the Single Pay flag is set; Monthly Payment Amount is disabled when Single Pay = yes
+Action Item:  May change to completion rule for lease only
+disclosure section first payment amount must = remaining payment amount within ? 
+)', 'Must match exactly - there is no tolerance allowed.','','');
