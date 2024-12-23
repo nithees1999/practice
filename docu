@@ -1,0 +1,102 @@
+
+Data Discovery Studio
+
+Overview
+
+This application provides a user-friendly interface for managing data. The frontend is built using React and communicates with a backend powered by Node.js and Express. The backend is connected to a Microsoft SQL Server database, which stores all the relevant data.
+
+
+Tech Stack
+
+• Frontend: React, Tailwind CSS 
+• Backend: Node.js, Express.js
+• Database: Microsoft SQL Server
+• API Communication: Axios
+• Additional Libraries: CORS, SQL String
+
+
+
+Frontend (React)
+
+The frontend is built using React and contains several key pages and components. 
+•	It allows users to search and filter based on parameters.
+•	Displays the results in a table format with columns 
+•	 Includes a modal for uploading Excel files, which integrates with the backend.
+
+UploadExcelModal Component
+
+• A modal that facilitates uploading of Excel files to the server.
+• The files are processed on the backend and stored in the appropriate database tables.
+
+API Integration
+
+• Axios is used to interact with the backend APIs to fetch data and submit search queries.
+• API requests are made to routes to retrieve data from the server.
+
+
+Backend (Node.js & Express)
+
+The backend uses Express.js to handle API requests and serve the data from the SQL Server database.
+
+1. Database Configuration
+
+• The backend is connected to a Microsoft SQL Server database.
+• The database connection is established using a connection pool for efficient management.
+
+2. Error Handling & Logging
+
+• The backend handles errors gracefully, returning appropriate status codes and error messages.
+• Logs are written to the console for debugging.
+
+3. SQL Queries
+
+• SQL queries are parameterized to avoid SQL injection attacks. The queries dynamically build based on user input.
+
+
+
+Features
+
+1. Upload Excel Files
+
+• Users can upload Excel files containing data.
+• The data from the file is processed on the backend and stored in the database.
+
+2. Filtering
+
+• The application allows users to filter based on parameters.
+Running the Application
+
+Frontend:
+1. Install dependencies:
+npm install
+
+2. Start the development server:
+npm start
+
+
+Backend:
+1. Install dependencies:
+npm install
+
+2. Start the server:
+npm start
+
+
+
+Environment Variables:
+
+• Set the following environment variables for the backend configuration:
+• DB_SERVER: The server name or IP address for the SQL Server.
+• DB_DATABASE: The name of the database.
+• DB_USER: The username for connecting to the database.
+• DB_PASSWORD: The password for connecting to the database.
+
+
+
+
+
+Conclusion
+
+This application provides a comprehensive solution for managing data. The architecture is designed for scalability and can be extended to support additional features in the future.
+
+
