@@ -1,0 +1,90 @@
+Nithees Kumar R
+Programmer Analyst (Full Stack Developer)
+
+           (+91) 90924-29000	                                                                                                                   nitheeskumar0612@gmail.com 
+
+WORK EXPERIENCE
+Programmer Analyst (PA) | Cognizant | August 2024 - PRESENT
+	Developed a React-based frontend for Data Discovery Studio, an application to manage and explore data, with a Node.js and Express.js backend, integrated with Microsoft SQL Server.
+	Built features such as dynamic search and filtering, sortable table displays, and an Excel file upload component for seamless backend integration.
+	Implemented secure database interactions with parameterized SQL queries and efficient data handling using Axios and SQL String.
+	Enhanced application scalability, enabling easy future feature additions, and ensured smooth user experience with responsive UI using Tailwind CSS.
+
+Tech Stack: React, Node.js, Express.js, Microsoft SQL Server, Axios, Tailwind CSS, SQL String
+     Programmer Analyst (PA) | Cognizant | June 2022 – August 2024
+	Built RESTful APIs using JSON Server for frontend web applications.
+	Developed a Product Management System, a web-based application utilizing React for the frontend and JSON Server for the backend, enabling CRUD operations on product records.
+	Designed and implemented web pages using React and Spring Boot, integrating with RESTful APIs.
+	Focused on frontend web development with a strong emphasis on user experience and performance optimization.
+	Proficient in database management, including CRUD operations in DBMS and MySQL.
+
+CDE FSE JAVA (INTERN) | Cognizant | December 2021 - June 2022
+
+	Enhanced proficiency in HTML, CSS, SPRINGBOOT, WEB APIs, MICROSERVICES, and AWS through company sponsored training.
+	Collaborated with a team of five to develop a Claim Management 
+ System, including the design and implementation of a checklist microservice, integration with an H2 database, and deployment in AWS.
+        Tech Stack : Core Java, Spring Boot, Angular, AWS
+
+    EDUCATION
+
+
+B.Tech (IT)	
+Thiagarajar College of Engineering,
+Madurai	
+Anna University (Autonomous)	
+2022	
+8.40
+
+Diploma	
+K L Nagaswamy Memorial Polytechnic
+College, Madurai	
+DOTE	
+2019	
+79
+
+X	
+Royal Vidyalaya Matriculation Higher Secondary School, Madurai	
+
+State Board	
+
+2015	
+
+77.2
+
+SKILLS
+
+	React JS
+	HTML
+	CSS
+	Java
+	Spring Boot
+	JavaScript
+	SQL
+
+   
+   PROJECTS
+
+
+PROJECT TITLE	
+DESCRIPTION
+
+
+Wholesale Pharmacy Management System
+(Duration: Jan 2022 – Apr 2022)	A database application that automates the management of stocks at the pharmacy using PHP database. It warns the user of the needed medicine based on the availability and frequent series based ordering of medicine in a timely manner. Asks for confirmation from the admin when logged in, with a dedicated user interface for the admin as well as consumers.
+
+Concepts used: Mysql
+
+Covid Patient Tracker and Supporting Application
+(Duration: Jun 2021 – Dec 2021)	To develop a web application for viewing and tracking the status of covid-19 cases in and across the country and to provide different supporting features that are needed during the pandemic period.
+
+Concepts used: HTML,CSS
+
+
+CERTIFICATION
+
+	Hello React - React Training for JavaScript Beginners || Provided by- Udemy
+	Postman - REST API Testing || Provided by- Udemy
+	Web Development - HTML, CSS, Javascript, Node, React, MongoDB, Web3 || Provided by- Udemy
+	Microsoft Cloud Certification- Microsoft Azure Fundamentals || Provided by- Microsoft
+	GitHub Certification- GitHub Foundations || Provided by- GitHub
+	GitHub Copilot Java React CI/CD Technology for Developers || Provided by- Cognizant
